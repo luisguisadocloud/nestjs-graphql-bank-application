@@ -1,0 +1,129 @@
+# GraphQL Queries Examples
+
+## Users Queries
+
+### Get all users
+```graphql
+query GetAllUsers {
+  users {
+    id
+    email
+    fullName
+    createdAt
+    updatedAt
+  }
+}
+```
+
+### Get user by ID
+```graphql
+query GetUserById($userId: ID!) {
+  user(id: $userId) {
+    id
+    email
+    fullName
+    createdAt
+    updatedAt
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "userId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+## Accounts Queries
+
+### Get account by ID
+```graphql
+query GetAccountById($accountId: ID!) {
+  account(id: $accountId) {
+    id
+    accountNumber
+    alias
+    balance
+    currency
+    type
+    createdAt
+    updatedAt
+    user {
+      id
+      email
+      fullName
+    }
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "accountId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+### Get accounts by user ID
+```graphql
+query GetAccountsByUser($userId: ID!) {
+  accountByUser(userId: $userId) {
+    id
+    accountNumber
+    alias
+    balance
+    currency
+    type
+    createdAt
+    updatedAt
+    user {
+      id
+      email
+      fullName
+    }
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "userId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+## Transactions Queries
+
+### Get transactions by account ID
+```graphql
+query GetTransactionsByAccount($accountId: ID!) {
+  transactionsByAccount(accountId: $accountId) {
+    id
+    amount
+    currency
+    type
+    status
+    description
+    createdAt
+    fromAccount {
+      id
+      accountNumber
+      alias
+    }
+    toAccount {
+      id
+      accountNumber
+      alias
+    }
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "accountId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+

@@ -1,0 +1,147 @@
+# GraphQL Mutations Examples
+
+## User Mutations
+
+### Create a new user
+```graphql
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    id
+    email
+    fullName
+    createdAt
+    updatedAt
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "input": {
+    "email": "john.doe@example.com",
+    "fullName": "John Doe"
+  }
+}
+```
+
+## Account Mutations
+
+### Open a new account
+```graphql
+mutation OpenAccount($input: OpenAccountInput!) {
+  openAccount(input: $input) {
+    id
+    accountNumber
+    alias
+    balance
+    currency
+    type
+    createdAt
+    updatedAt
+    user {
+      id
+      email
+      fullName
+    }
+  }
+}
+```
+
+Variables example for checking account in USD:
+```json
+{
+  "input": {
+    "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "alias": "My Checking Account",
+    "type": "CHECKING",
+    "currency": "USD"
+  }
+}
+```
+
+Variables example for savings account in PEN:
+```json
+{
+  "input": {
+    "userId": "123e4567-e89b-12d3-a456-426614174000",
+    "alias": "My Savings Account",
+    "type": "SAVINGS",
+    "currency": "PEN"
+  }
+}
+```
+
+## Transaction Mutations
+
+### Deposit funds to an account
+```graphql
+mutation DepositFunds($input: DepositInput!) {
+  deposit(input: $input) {
+    id
+    amount
+    currency
+    type
+    status
+    description
+    createdAt
+    toAccount {
+      id
+      accountNumber
+      alias
+      balance
+    }
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "input": {
+    "toAccountId": "123e4567-e89b-12d3-a456-426614174000",
+    "amount": 1000.50,
+    "description": "Initial deposit"
+  }
+}
+```
+
+### Transfer funds between accounts
+```graphql
+mutation TransferFunds($input: TransferFundsInput!) {
+  transferFunds(input: $input) {
+    id
+    amount
+    currency
+    type
+    status
+    description
+    createdAt
+    fromAccount {
+      id
+      accountNumber
+      alias
+      balance
+    }
+    toAccount {
+      id
+      accountNumber
+      alias
+      balance
+    }
+  }
+}
+```
+
+Variables example:
+```json
+{
+  "input": {
+    "fromAccountId": "123e4567-e89b-12d3-a456-426614174000",
+    "toAccountId": "223e4567-e89b-12d3-a456-426614174001",
+    "amount": 500.00,
+    "description": "Monthly rent payment"
+  }
+}
+```
+
