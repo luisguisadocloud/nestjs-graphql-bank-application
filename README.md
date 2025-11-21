@@ -67,14 +67,14 @@ graph TD
     D --> G[AccountsResolver<br/>AccountsService<br/>Account Entity]
     E --> H[TransactionsResolver<br/>TransactionsService<br/>Transaction Entity]
     
-    style A fill:#e1f5ff
-    style B fill:#b3e5fc
-    style C fill:#81d4fa
-    style D fill:#81d4fa
-    style E fill:#81d4fa
-    style F fill:#fff9c4
-    style G fill:#fff9c4
-    style H fill:#fff9c4
+    style A fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style B fill:#2196f3,stroke:#1565c0,stroke-width:2px,color:#fff
+    style C fill:#42a5f5,stroke:#1976d2,stroke-width:2px,color:#fff
+    style D fill:#42a5f5,stroke:#1976d2,stroke-width:2px,color:#fff
+    style E fill:#42a5f5,stroke:#1976d2,stroke-width:2px,color:#fff
+    style F fill:#ffc107,stroke:#f57c00,stroke-width:2px,color:#000
+    style G fill:#ffc107,stroke:#f57c00,stroke-width:2px,color:#000
+    style H fill:#ffc107,stroke:#f57c00,stroke-width:2px,color:#000
 ```
 
 Each module follows the same structure:
