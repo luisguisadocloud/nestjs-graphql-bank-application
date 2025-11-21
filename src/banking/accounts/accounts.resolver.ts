@@ -24,4 +24,7 @@ export class AccountResolver {
   async openAccount(@Args('input') input: OpenAccountInput): Promise<Account> {
     return this.accountsService.openAccount(input);
   }
+
+  // @Mutation(() => AccountModel)
+  // async deposit
 }

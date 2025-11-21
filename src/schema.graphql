@@ -34,8 +34,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DepositInput {
+  amount: Float!
+  description: String
+  toAccountId: String!
+}
+
 type Mutation {
   createUser(input: CreateUserInput!): UserModel!
+  deposit(input: DepositInput!): TransactionModel!
   openAccount(input: OpenAccountInput!): AccountModel!
   transferFunds(input: TransferFundsInput!): TransactionModel!
 }
@@ -50,7 +57,7 @@ input OpenAccountInput {
 type Query {
   account(id: ID!): AccountModel!
   accountByUser(userId: ID!): [AccountModel!]!
-  transactionByAccount(accountId: ID!): [TransactionModel!]!
+  transactionsByAccount(accountId: ID!): [TransactionModel!]!
   user(id: ID!): UserModel!
   users: [UserModel!]!
 }
