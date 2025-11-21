@@ -1,0 +1,95 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AccountModel {
+  accountNumber: String!
+  alias: String
+  balance: Float!
+  createdAt: DateTime!
+  currency: Currency!
+  id: ID!
+  type: AccountType!
+  updatedAt: DateTime!
+  user: UserModel!
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+}
+
+input CreateUserInput {
+  email: String!
+  fullName: String!
+}
+
+enum Currency {
+  PEN
+  USD
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createUser(input: CreateUserInput!): UserModel!
+  openAccount(input: OpenAccountInput!): AccountModel!
+  transferFunds(input: TransferFundsInput!): TransactionModel!
+}
+
+input OpenAccountInput {
+  alias: String
+  currency: Currency!
+  type: AccountType!
+  userId: String!
+}
+
+type Query {
+  account(id: ID!): AccountModel!
+  accountByUser(userId: ID!): [AccountModel!]!
+  transactionByAccount(accountId: ID!): [TransactionModel!]!
+  user(id: ID!): UserModel!
+  users: [UserModel!]!
+}
+
+type TransactionModel {
+  amount: Float!
+  createdAt: DateTime!
+  currency: Currency!
+  description: String
+  fromAccount: AccountModel
+  id: ID!
+  status: TransactionStatus!
+  toAccount: AccountModel
+  type: TransactionType!
+}
+
+enum TransactionStatus {
+  COMPLETED
+  FAILED
+  PENDING
+}
+
+enum TransactionType {
+  DEPOSIT
+  TRANSFER
+  WITHDRAWAL
+}
+
+input TransferFundsInput {
+  amount: Float!
+  description: String
+  fromAccountId: String!
+  toAccountId: String!
+}
+
+type UserModel {
+  createdAt: DateTime!
+  email: String!
+  fullName: String!
+  id: ID!
+  updatedAt: DateTime!
+}
