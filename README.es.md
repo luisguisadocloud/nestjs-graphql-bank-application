@@ -53,6 +53,30 @@ La aplicación está organizada en módulos de características siguiendo las me
   - **AccountsModule**: Gestión de cuentas (abrir cuentas, consultar cuentas)
   - **TransactionsModule**: Procesamiento de transacciones (depósitos, transferencias, historial)
 
+```mermaid
+graph TD
+    A[AppModule<br/>Módulo Raíz] --> B[BankingModule<br/>Módulo de Características Bancarias]
+    B --> C[UsersModule<br/>Gestión de Usuarios]
+    B --> D[AccountsModule<br/>Gestión de Cuentas]
+    B --> E[TransactionsModule<br/>Procesamiento de Transacciones]
+    
+    C -->|exporta UsersService| D
+    D -->|exporta AccountsService| E
+    
+    C --> F[UsersResolver<br/>UsersService<br/>User Entity]
+    D --> G[AccountsResolver<br/>AccountsService<br/>Account Entity]
+    E --> H[TransactionsResolver<br/>TransactionsService<br/>Transaction Entity]
+    
+    style A fill:#e1f5ff
+    style B fill:#b3e5fc
+    style C fill:#81d4fa
+    style D fill:#81d4fa
+    style E fill:#81d4fa
+    style F fill:#fff9c4
+    style G fill:#fff9c4
+    style H fill:#fff9c4
+```
+
 Cada módulo sigue la misma estructura:
 - `*.resolver.ts`: Resolvers GraphQL (puntos de entrada para queries/mutations)
 - `*.service.ts`: Lógica de negocio y operaciones de datos

@@ -53,6 +53,30 @@ The application is organized into feature modules following NestJS best practice
   - **AccountsModule**: Account management (opening accounts, querying accounts)
   - **TransactionsModule**: Transaction processing (deposits, transfers, history)
 
+```mermaid
+graph TD
+    A[AppModule<br/>Root Module] --> B[BankingModule<br/>Banking Feature Module]
+    B --> C[UsersModule<br/>User Management]
+    B --> D[AccountsModule<br/>Account Management]
+    B --> E[TransactionsModule<br/>Transaction Processing]
+    
+    C -->|exports UsersService| D
+    D -->|exports AccountsService| E
+    
+    C --> F[UsersResolver<br/>UsersService<br/>User Entity]
+    D --> G[AccountsResolver<br/>AccountsService<br/>Account Entity]
+    E --> H[TransactionsResolver<br/>TransactionsService<br/>Transaction Entity]
+    
+    style A fill:#e1f5ff
+    style B fill:#b3e5fc
+    style C fill:#81d4fa
+    style D fill:#81d4fa
+    style E fill:#81d4fa
+    style F fill:#fff9c4
+    style G fill:#fff9c4
+    style H fill:#fff9c4
+```
+
 Each module follows the same structure:
 - `*.resolver.ts`: GraphQL resolvers (entry points for queries/mutations)
 - `*.service.ts`: Business logic and data operations
